@@ -1,5 +1,6 @@
 # The config for the relation model (pipe2_re_tokaux_sent.py)
 class pipe2_re_tokaux_sent:
+    # Best result achieved at seed=33 for ace05, 32 for scierc, 35 for radgraph, 23 for cxrgraph
     seed = 23
 
     do_train = True
@@ -7,7 +8,7 @@ class pipe2_re_tokaux_sent:
 
     task = "cxrgraph"
 
-    # The predicted data from the entity model. By default, it is `.../output_dir/output_name/pred_ner` (that you set for pipe1_xxx)
+    # The predicted data from the entity model. By default, it is in `.../[output_dir]/[output_name]/pred_ner/` (as you set for pipe1_xxx)
     data_dir = {
         "scierc": "/root/autodl-tmp/cxr_structured_report/outputs/scierc_pipe1_ner_tokaux_sent_seed_35/pred_ner",
         "ace05": "/root/autodl-tmp/data/ace05/pred_ner24_sent_90299",
@@ -15,7 +16,7 @@ class pipe2_re_tokaux_sent:
         "cxrgraph": "/root/autodl-tmp/cxr_structured_report/outputs/cxrgraph_pipe1_ner_tokaux_attrcls_sent_seed_35/pred_ner",
     }
 
-    # The fine-tuned encoder from the entity model. By default, it is `.../output_model_dir/output_name` (that you set for pipe1_xxx)
+    # The fine-tuned encoder from the entity model. By default, it is in `.../[output_model_dir]/[output_name]/` (as you set for pipe1_xxx)
     model_name_or_path = {
         "scierc": "/root/autodl-tmp/cxr_structured_report/models/scierc_pipe1_ner_tokaux_sent_seed_35",
         "ace05": "/root/autodl-tmp/offline_models/ace05_pipe1_ner_tokaux_doc_seed_24",
@@ -56,6 +57,7 @@ class pipe2_re_tokaux_sent:
 
 
 class pipe1_ner_tokaux_attrcls_doc:
+    # Best result achieved at 35 for cxrgraph
     seed = 35
 
     do_train = True
@@ -107,6 +109,7 @@ class pipe1_ner_tokaux_attrcls_doc:
 
 
 class pipe1_ner_tokaux_attrcls_sent:
+    # Best result achieved at seed=35 for cxrgraph
     seed = 35
 
     do_train = True
@@ -157,7 +160,8 @@ class pipe1_ner_tokaux_attrcls_sent:
 
 
 class pipe1_ner_tokaux_doc:
-    seed = 35
+    # Best result achieved at seed=24 for ace05, 35 for scierc, 34 for radgraph
+    seed = 34
 
     do_train = True
     do_eval = True
@@ -212,6 +216,7 @@ class pipe1_ner_tokaux_doc:
 
 
 class pipe1_ner_tokaux_sent:
+    # Best result achieved at seed=24 for ace05, 35 for scierc, 34 for radgraph
     seed = 34
 
     do_train = True

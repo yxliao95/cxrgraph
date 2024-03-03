@@ -3,28 +3,28 @@
 ## Trained model
 
 CXRGraph:
-Entity model: https://huggingface.co/yxLiao/biomedbert_ent_cxrgraph (related code: pipe1_ner_tokaux_attrcls_sent.py)
-Relation model: https://huggingface.co/yxLiao/biomedbert_rel_cxrgraph (related code: pipe2_re_tokaux_sent.py)
-results:
-  mimic: ner-f1=96.618%, attr-f1=91.996% re-f1=89.510%
-  chexpert: ner-f1=96.059%, attr-f1=89.787% re-f1=86.643%
+Entity model: https://huggingface.co/yxLiao/biomedbert_ent_cxrgraph (related code: pipe1_ner_tokaux_attrcls_sent.py).
+Relation model: https://huggingface.co/yxLiao/biomedbert_rel_cxrgraph (related code: pipe2_re_tokaux_sent.py).
+Results: 
+mimic: ner-f1=96.618%, attr-f1=91.996% re-f1=89.510%;
+chexpert: ner-f1=96.059%, attr-f1=89.787% re-f1=86.643%
 
 RadGraph:
-Entity model: https://huggingface.co/yxLiao/biomedbert_ent_radgraph (related code: pipe1_ner_tokaux_sent.py)
-Relation model: https://huggingface.co/yxLiao/biomedbert_rel_radgraph (related code: pipe2_re_tokaux_sent.py)
-results:
-  mimic: ner-f1=94.361%, attr-f1=85.202% re-f1=83.274%
-  chexpert: ner-f1=91.228%, attr-f1=75.367% re-f1=73.302%
+Entity model: https://huggingface.co/yxLiao/biomedbert_ent_radgraph (related code: pipe1_ner_tokaux_sent.py).
+Relation model: https://huggingface.co/yxLiao/biomedbert_rel_radgraph (related code: pipe2_re_tokaux_sent.py).
+Results:
+mimic: ner-f1=94.361%, attr-f1=85.202% re-f1=83.274%;
+chexpert: ner-f1=91.228%, attr-f1=75.367% re-f1=73.302%
 
 SciERC:
-Entity model: https://huggingface.co/yxLiao/scibert_ent_scierc (related code: pipe1_ner_tokaux_sent.py)
-Relation model: https://huggingface.co/yxLiao/scibert_rel_scierc (related code: pipe2_re_tokaux_sent.py)
-results: ner-f1=70.696%, re-f1=43.714%
+Entity model: https://huggingface.co/yxLiao/scibert_ent_scierc (related code: pipe1_ner_tokaux_sent.py).
+Relation model: https://huggingface.co/yxLiao/scibert_rel_scierc (related code: pipe2_re_tokaux_sent.py).
+Results: ner-f1=70.696%, re-f1=43.714%
 
 ACE05:
-Entity model: https://huggingface.co/yxLiao/bert_ent_ace05 (related code: pipe1_ner_tokaux_sent.py)
-Relation model: https://huggingface.co/yxLiao/bert_rel_ace05 (related code: pipe2_re_tokaux_sent.py)
-results: ner-f1=90.299%, re-f1=67.140%
+Entity model: https://huggingface.co/yxLiao/bert_ent_ace05 (related code: pipe1_ner_tokaux_sent.py).
+Relation model: https://huggingface.co/yxLiao/bert_rel_ace05 (related code: pipe2_re_tokaux_sent.py).
+Results: ner-f1=90.299%, re-f1=67.140%
 
 (For re-f1, entity boundries, entity types, and relation types must be all correct)
 
@@ -33,17 +33,18 @@ results: ner-f1=90.299%, re-f1=67.140%
 1. ACE05: We follow the instructions from [DyGIE](https://github.com/luanyi/DyGIE/tree/master/preprocessing) repo to preprocess the ACE05 dataset.
 2. SciERC: We download the SciERC dataset from [Luan et al.](http://nlp.cs.washington.edu/sciIE/)
 3. RadGraph: We download the RadGraph from [PhysioNet](https://physionet.org/content/radgraph/1.0.0/) and process the data by [this script](./preprocessing/radgraph2json.ipynb)
+4. CXRGraph: Under the review process of PhysioNet. A link will be updated when available.
 
 ## Environments
 
-Our models are trained on a device rent from [AutoDL](https://www.autodl.com/)
-
 ### Device Details
 
-Mirror: PyTorch 1.11.0, Python 3.8(ubuntu20.04), Cuda 11.3
-GPU: RTX A5000(24GB) * 1, GPU Drive: 535.98
-CPU: 16 vCPU Intel(R) Xeon(R) Platinum 8350C CPU @ 2.60GHz
-Memory: 42GB
+Our models are trained on a cloud device rent from [AutoDL](https://www.autodl.com/)
+
+- Mirror: PyTorch 1.11.0, Python 3.8(ubuntu20.04), Cuda 11.3
+- GPU: RTX A5000(24GB) * 1, GPU Drive: 535.98
+- CPU: 16 vCPU Intel(R) Xeon(R) Platinum 8350C CPU @ 2.60GHz
+- Memory: 42GB
 
 ### Libraries
 
@@ -68,23 +69,23 @@ or manually install as follows (recommend):
          2. See [link](https://github.com/explosion/spaCy/issues/12659)
          3. check version: `pip show spacy`
 5. `pip install transformers==4.20.1`
-6. `pip install notebook`
-   1. We use if via VSCode
+6. `pip install notebook` (optional)
 
 
 ### Download HuggingFace models (if necessary)
 
-1. Follows the [link](https://huggingface.co/docs/transformers/installation#offline-mode)
+1. Follows the [instruction](https://huggingface.co/docs/transformers/installation#offline-mode) to download.
 
 ## Training and Evaluation
 
 Check the config.py for model configurations.
+Full information are available in the `train.log` in the corresponding model download pages.
 
 `pipe1_ner_tokaux_sent.py`: the entity model for the ACE05, SciERC, RadGraph datasets
 `pipe1_ner_tokaux_attrcls_sent.py`: the entity model for the CXRGraph dataset (having an extra task of entity attribute classification)
 `pipe2_re_tokaux_sent.py`: the relation model for all datasets (num_extra_sent_for_candi_ent=0)
 
-We run main xperiments with 8 different seeds (22-25, 32-35). Other hyper-parameters are inherited from [PURE](https://github.com/princeton-nlp/PURE) and [PL-Marker](https://github.com/thunlp/PL-Marker?tab=readme-ov-file)
+We run main experiments with 8 different seeds [22-25, 32-35]. Other hyper-parameters are inherited from [PURE](https://github.com/princeton-nlp/PURE) and [PL-Marker](https://github.com/thunlp/PL-Marker?tab=readme-ov-file).
 
 ### Model Variants
 
