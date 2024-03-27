@@ -243,7 +243,7 @@ def load_model(model_path, width_embedding_dim, max_span_length, num_ner_labels,
     classifier_sd_path = os.path.join(model_path, "model_classifiers.pth")
     if not os.path.exists(classifier_sd_path):
         raise FileNotFoundError(f"The checkpoint `model_classifiers.pth` is not found in {classifier_sd_path}")
-    sd.update(torch.load(classifier_sd_path))
+    sd.update(torch.load(classifier_sd_path, map_location=torch.device(device)))
     model.load_state_dict(sd)
     return model
 
