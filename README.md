@@ -57,17 +57,17 @@ or manually install as follows (recommend):
 2. `conda activate cxr_graph`
 3. `conda install tqdm`
 4. `conda install pytorch==1.12.1 torchvision==0.13.1 torchaudio==0.12.1 cudatoolkit=11.3 -c pytorch`
-   2. if you have compatiable issue to local cuda version, try the followings:
-         1. `nvcc -V` to check cuda version
-         2. `python` -> `import torch` -> `print(torch.__version__)` -> `exit()` to check torch+cuda version
-         3. Find the correct torch version+cuda from [here](https://pytorch.org/get-started/previous-versions/)
-   3. If you are using spacy, you may get the following errors:
+   1. if you have compatiable issue to local cuda version, try the followings:
+      1. `nvcc -V` to check cuda version
+      2. `python` -> `import torch` -> `print(torch.__version__)` -> `exit()` to check torch+cuda version
+      3. Find the correct torch version+cuda from [here](https://pytorch.org/get-started/previous-versions/)
+   2. If you are using spacy, you may get the following errors:
       1. ImportError: cannot import name 'COMMON_SAFE_ASCII_CHARACTERS' from 'charset_normalizer.constant' (/root/miniconda3/envs/cxr_graph/lib/python3.9/site-packages/charset_normalizer/constant.py)
-         1. `pip install chardet`
-      2. TypeError: issubclass() arg 1 must be a class
-         1. `pip install typing_extensions==4.4.0`
-         2. See [link](https://github.com/explosion/spaCy/issues/12659)
-         3. check version: `pip show spacy`
+      2. `pip install chardet`
+   3. TypeError: issubclass() arg 1 must be a class
+      1. `pip install typing_extensions==4.4.0`
+      2. See [link](https://github.com/explosion/spaCy/issues/12659)
+      3. check version: `pip show spacy`
 5. `pip install transformers==4.20.1`
 6. `pip install notebook` (optional)
 
